@@ -1,0 +1,78 @@
+/* Main layout */
+
+header {
+    width: 100%;
+    float: left;
+    font-family: Georgia;
+    text-align: center;
+}
+
+nav {
+    width: 20%;
+    float: left;
+}
+
+main {
+    width: 60%;
+    float: left;
+    font-size: large;
+}
+
+footer {
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+}
+
+#img1 {
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+}
+
+#logo {
+    width: 10%;
+    display: block;
+    margin: 0 auto;
+}
+
+main p {
+    margin-top: 30px;
+    text-indent: 25px;
+}
+
+/* Menus */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: lightgray;
+    border: 1px solid #555;
+}
+
+li {
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li a {
+    display: block;
+    color: darkred;
+   padding: 8px 0px 8px 8px;
+    text-decoration: none;
+}
+
+/* Menu hover */
+
+li a:hover {
+    background-color: #555;
+    color: white;
+}
