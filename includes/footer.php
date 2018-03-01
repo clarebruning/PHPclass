@@ -1,0 +1,1 @@
+<img src="../images/topknot.png" alt="topknot logo" id="logo"><br>&copy; 2018 topknotclare.com
