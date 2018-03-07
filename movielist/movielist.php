@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>My Movie List</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <style>
+        td a {
+
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +45,7 @@
 
                 echo "<tr>";
                     echo "<td>".$row["movieID"]."</td>";
-                    echo "<td>".$row["movieTitle"]."</td>";
+                    echo "<td><a href=movieupdate.php?id=" . $row["movieID"] . ">".$row["movieTitle"]."</a></td>";
                     echo "<td>".$row["movieRating"]."</td>";
                 echo "</tr>";
             }

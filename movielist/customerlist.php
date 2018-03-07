@@ -30,6 +30,7 @@
             <th>Zip</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Password</th>
         </tr>
         <?php
         include'../includes/dbConnect.php';
@@ -44,15 +45,16 @@
             while($row=$sql->fetch()){
 
                 echo "<tr>";
-                echo "<td>".$row["CustomerID"]."</td>";
-                echo "<td>".$row["FirstName"]."</td>";
-                echo "<td>".$row["LastName"]."</td>";
+                echo "<td><a href=customerupdate.php?id=" . $row["CustomerID"] . ">".$row["CustomerID"]."</a></td>";
+                echo "<td><a href=customerupdate.php?id=" . $row["CustomerID"] . ">".$row["FirstName"]."</a></td>";
+                echo "<td><a href=customerupdate.php?id=" . $row["CustomerID"] . ">".$row["LastName"]."</a></td>";
                 echo "<td>".$row["Address"]."</td>";
                 echo "<td>".$row["City"]."</td>";
                 echo "<td>".$row["State"]."</td>";
                 echo "<td>".$row["Zip"]."</td>";
                 echo "<td>".$row["Phone"]."</td>";
                 echo "<td>".$row["Email"]."</td>";
+                echo "<td>Secret</td>";
                 echo "</tr>";
             }
 
