@@ -1,9 +1,9 @@
 <?php
-
+$key = sprintf('%04X%04X%04X%04X%04X%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 //connect to database
 include'../includes/dbConnect.php';
 
-if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_POST["txtCity"], $_POST["txtState"], $_POST["txtZip"], $_POST["txtPhone"], $_POST["txtEmail"])) {
+if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_POST["txtCity"], $_POST["txtState"], $_POST["txtZip"], $_POST["txtPhone"], $_POST["txtEmail"], $_POST["txtPassword"])) {
     $id=$_POST["txtID"];
     $firstName=$_POST["txtFirstName"];
     $lastName=$_POST["txtLastName"];
@@ -13,7 +13,7 @@ if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_
     $zip=$_POST["txtZip"];
     $phone=$_POST["txtPhone"];
     $email=$_POST["txtEmail"];
-    $password=$_POST["txtPassword"];
+    $custPassword=$_POST["txtPassword"];
 
 
     try {
@@ -29,7 +29,7 @@ if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_
         $sql->bindValue(":zip",$zip);
         $sql->bindValue(":phone",$phone);
         $sql->bindValue(":email",$email);
-        $sql->bindValue(":password",$password);
+        $sql->bindValue(":password",md5($custPassword . $key));
         $sql->bindValue(":ID",$id);
         $sql->execute();
 
@@ -61,7 +61,7 @@ if(isset($_GET["id"])){
         $zip = $row["Zip"];
         $phone = $row["Phone"];
         $email = $row["Email"];
-        $password = $row["Password"];
+        $custPassword = $row["Password"];
     }
     catch (PDOException $e) {
         $error = $e->getMessage();

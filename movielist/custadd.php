@@ -1,4 +1,6 @@
 <?php
+$key = sprintf('%04X%04X%04X%04X%04X%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+
 $firstName=$_POST["txtFirstName"];
 $lastName=$_POST["txtLastName"];
 $address=$_POST["txtAddress"];
@@ -17,6 +19,7 @@ if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_
     $zip=$_POST["txtZip"];
     $phone=$_POST["txtPhone"];
     $email=$_POST["txtEmail"];
+    $passwordEntered=$_POST["txtPassword"];
 
     //connect to database
     include'../includes/dbConnect.php';
@@ -24,7 +27,7 @@ if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_
     try {
         $db = new PDO($dsn, $username, $password, $options);
 
-        $sql = $db->prepare("insert into customer (FirstName, LastName, Address, City, State, Zip, Phone, Email) values (:firstName, :lastName, :address, :city, :state, :zip, :phone, :email)");
+        $sql = $db->prepare("insert into customer (FirstName, LastName, Address, City, State, Zip, Phone, Email, Password) values (:firstName, :lastName, :address, :city, :state, :zip, :phone, :email, :password)");
         $sql->bindValue(":firstName",$firstName);
         $sql->bindValue(":lastName",$lastName);
         $sql->bindValue(":address",$address);
@@ -33,6 +36,7 @@ if(isset($_POST["txtFirstName"], $_POST["txtLastName"], $_POST["txtAddress"], $_
         $sql->bindValue(":zip",$zip);
         $sql->bindValue(":phone",$phone);
         $sql->bindValue(":email",$email);
+        $sql->bindValue(":password",md5($passwordEntered . $key));
         $sql->execute();
 
     }
